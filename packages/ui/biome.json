@@ -1,5 +1,17 @@
 {
 	"$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
 	"root": false,
-	"extends": ["@repo/biome-config/base", "@repo/biome-config/react-internal"]
+	"extends": ["@repo/biome-config/base", "@repo/biome-config/react-internal"],
+	"css": {
+		"parser": {
+			"cssModules": true,
+			"allowWrongLineComments": true
+		},
+		"linter": {
+			"enabled": false
+		},
+		"formatter": {
+			"enabled": true
+		}
+	}
 }
