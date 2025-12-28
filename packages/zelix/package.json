@@ -1,0 +1,50 @@
+{
+	"name": "@repo/zelix",
+	"version": "0.0.1",
+	"description": "Zelix SDK for high-performance Solana trading",
+	"license": "MIT",
+	"type": "module",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/index.d.ts",
+				"default": "./dist/index.js"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			}
+		}
+	},
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"scripts": {
+		"build": "tsup",
+		"dev": "tsup --watch",
+		"lint": "biome check --write",
+		"check-types": "tsc --noEmit",
+		"clean": "rm -rf dist"
+	},
+	"devDependencies": {
+		"@repo/biome-config": "*",
+		"@repo/typescript-config": "*",
+		"@types/node": "^24.10.4",
+		"tsup": "^8.5.1",
+		"typescript": "5.9.3"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"keywords": [
+		"solana",
+		"trading",
+		"quant",
+		"sdk",
+		"defi"
+	]
+}
