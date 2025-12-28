@@ -6,7 +6,7 @@ import {
 	HeroSection,
 	SdkShowcase,
 	SpeedMetrics,
-} from "@repo/ui/landing";
+} from "@/components/landing";
 import { Footer, UnifiedNavbar } from "@/components";
 
 export default function Home() {

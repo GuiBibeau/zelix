@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { UnifiedNavbar } from "@/components";
-import { WalletConnectModal, WalletConnectedModal } from "@repo/ui/modal";
+import { WalletConnectModal, WalletConnectedModal } from "@/components/modal";
 
 export default function TradingTerminal() {
 	const [isConnected, setIsConnected] = useState(false);
