@@ -1,25 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Activity, BarChart3, Shield, Zap } from "lucide-react";
+
+const highlights = [
+	{
+		icon: Zap,
+		title: "OPTIMIZED ROUTING",
+		description:
+			"Smart order routing across multiple Solana DEXs for best execution",
+	},
+	{
+		icon: Activity,
+		title: "REAL-TIME DATA",
+		description: "Live market data feeds and execution updates via WebSocket",
+	},
+	{
+		icon: Shield,
+		title: "RELIABLE INFRA",
+		description:
+			"Redundant RPC nodes and automatic failover for consistent uptime",
+	},
+	{
+		icon: BarChart3,
+		title: "TRANSPARENT FEES",
+		description: "Simple, competitive pricing with no hidden costs or markups",
+	},
+];
 
 export function SpeedMetrics() {
-	const [metrics, setMetrics] = useState({
-		orders: 847234,
-		volume: 2847,
-		strategies: 143,
-	});
-
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setMetrics((prev) => ({
-				orders: prev.orders + Math.floor(Math.random() * 100),
-				volume: prev.volume + Math.floor(Math.random() * 10),
-				strategies: prev.strategies + (Math.random() > 0.7 ? 1 : 0),
-			}));
-		}, 3000);
-		return () => clearInterval(interval);
-	}, []);
-
 	return (
 		<section
 			id="performance"
@@ -28,53 +36,24 @@ export function SpeedMetrics() {
 			<div className="container mx-auto px-4">
 				<div className="text-center mb-12">
 					<h2 className="text-4xl lg:text-6xl font-bold uppercase tracking-tighter mb-4">
-						LIVE NETWORK STATS
+						WHY ZELIX
 					</h2>
 					<p className="text-lg opacity-80">
-						Real-time metrics from Zelix execution fabric
+						Infrastructure designed for serious traders
 					</p>
 				</div>
 
-				<div className="grid md:grid-cols-3 gap-6">
-					<div className="border-4 border-white dark:border-black p-8 text-center hover:scale-105 transition-transform">
-						<div className="text-5xl lg:text-6xl font-bold font-mono mb-2">
-							{metrics.orders.toLocaleString()}
+				<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+					{highlights.map((item) => (
+						<div
+							key={item.title}
+							className="border-4 border-white dark:border-black p-6 text-center hover:scale-105 transition-transform"
+						>
+							<item.icon className="w-10 h-10 mx-auto mb-4" />
+							<div className="text-sm font-bold mb-2">{item.title}</div>
+							<div className="text-xs opacity-80">{item.description}</div>
 						</div>
-						<div className="text-sm font-bold">ORDERS EXECUTED TODAY</div>
-					</div>
-
-					<div className="border-4 border-white dark:border-black p-8 text-center hover:scale-105 transition-transform">
-						<div className="text-5xl lg:text-6xl font-bold font-mono mb-2">
-							${metrics.volume}M
-						</div>
-						<div className="text-sm font-bold">24H TRADING VOLUME</div>
-					</div>
-
-					<div className="border-4 border-white dark:border-black p-8 text-center hover:scale-105 transition-transform">
-						<div className="text-5xl lg:text-6xl font-bold font-mono mb-2">
-							{metrics.strategies}
-						</div>
-						<div className="text-sm font-bold">ACTIVE STRATEGIES</div>
-					</div>
-				</div>
-
-				<div className="mt-12 grid md:grid-cols-4 gap-4 text-center">
-					<div>
-						<div className="text-3xl font-bold font-mono mb-1">847μs</div>
-						<div className="text-xs opacity-80">AVG LATENCY</div>
-					</div>
-					<div>
-						<div className="text-3xl font-bold font-mono mb-1">99.99%</div>
-						<div className="text-xs opacity-80">UPTIME</div>
-					</div>
-					<div>
-						<div className="text-3xl font-bold font-mono mb-1">15,234</div>
-						<div className="text-xs opacity-80">TPS CAPACITY</div>
-					</div>
-					<div>
-						<div className="text-3xl font-bold font-mono mb-1">0.02%</div>
-						<div className="text-xs opacity-80">MAKER FEE</div>
-					</div>
+					))}
 				</div>
 			</div>
 		</section>

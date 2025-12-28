@@ -5,27 +5,27 @@ import { BarChart3, Boxes, Code2, Cpu, Shield, Zap } from "lucide-react";
 const features = [
 	{
 		icon: Zap,
-		title: "SUB-MS EXECUTION",
+		title: "FAST EXECUTION",
 		description:
-			"Execute orders with sub-millisecond latency on Solana mainnet. Direct market access with zero intermediaries.",
+			"Execute orders with optimized latency on Solana mainnet. Direct market access with smart order routing.",
 	},
 	{
 		icon: Code2,
 		title: "TYPESCRIPT SDK",
 		description:
-			"Full-featured SDK with type safety. Build, backtest, and deploy strategies in minutes, not days.",
+			"Full-featured SDK with type safety. Build, backtest, and deploy strategies with a clean API.",
 	},
 	{
 		icon: BarChart3,
 		title: "REAL-TIME ANALYTICS",
 		description:
-			"Monitor performance metrics, PnL, and execution quality with millisecond precision data feeds.",
+			"Monitor performance metrics, PnL, and execution quality with streaming data feeds.",
 	},
 	{
 		icon: Shield,
-		title: "INSTITUTIONAL GRADE",
+		title: "RISK MANAGEMENT",
 		description:
-			"Bank-level security with multi-sig support, audit logs, and role-based access control.",
+			"Built-in position limits, stop-loss handling, and configurable risk controls for your strategies.",
 	},
 	{
 		icon: Boxes,
@@ -49,7 +49,7 @@ export function FeaturesGrid() {
 		>
 			<div className="text-center mb-16">
 				<h2 className="text-4xl lg:text-6xl font-bold uppercase tracking-tighter mb-4">
-					BUILT FOR SPEED
+					BUILT FOR TRADERS
 				</h2>
 				<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
 					Everything you need to build, test, and deploy quantitative trading

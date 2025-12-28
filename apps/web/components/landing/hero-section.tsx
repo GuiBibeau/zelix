@@ -1,20 +1,8 @@
 "use client";
 
-import { ArrowRight, Code, TrendingUp, Zap } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowRight, Code, Shield, Zap } from "lucide-react";
 
 export function HeroSection() {
-	const [latency, setLatency] = useState(847);
-	const [throughput, setThroughput] = useState(15234);
-
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setLatency(Math.floor(Math.random() * 300) + 700);
-			setThroughput(Math.floor(Math.random() * 5000) + 14000);
-		}, 2000);
-		return () => clearInterval(interval);
-	}, []);
-
 	return (
 		<section className="container mx-auto px-4 py-20 lg:py-32">
 			<div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -34,8 +22,8 @@ export function HeroSection() {
 
 					<p className="text-lg lg:text-xl leading-relaxed max-w-xl">
 						High-performance quantitative trading infrastructure for Solana.
-						Execute complex strategies with sub-millisecond latency and
-						institutional-grade reliability.
+						Execute complex strategies with low latency and reliable order
+						routing.
 					</p>
 
 					<div className="flex flex-col sm:flex-row gap-4">
@@ -60,25 +48,23 @@ export function HeroSection() {
 				<div className="space-y-4">
 					<div className="border-4 border-black dark:border-white p-6 bg-white dark:bg-black hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all">
 						<div className="flex items-center justify-between mb-4">
-							<span className="text-sm font-bold">EXECUTION LATENCY</span>
+							<span className="text-sm font-bold">OPTIMIZED EXECUTION</span>
 							<Zap className="w-5 h-5" />
 						</div>
-						<div className="text-4xl font-bold font-mono">{latency}μs</div>
-						<div className="text-sm text-muted-foreground mt-2">
-							P99 ORDER EXECUTION
+						<div className="text-sm leading-relaxed">
+							Direct market access with smart order routing across Solana DEXs
+							and liquidity sources.
 						</div>
 					</div>
 
 					<div className="border-4 border-black dark:border-white p-6 bg-white dark:bg-black hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all">
 						<div className="flex items-center justify-between mb-4">
-							<span className="text-sm font-bold">THROUGHPUT</span>
-							<TrendingUp className="w-5 h-5" />
+							<span className="text-sm font-bold">BUILT FOR TRADERS</span>
+							<Shield className="w-5 h-5" />
 						</div>
-						<div className="text-4xl font-bold font-mono">
-							{throughput.toLocaleString()}
-						</div>
-						<div className="text-sm text-muted-foreground mt-2">
-							ORDERS PER SECOND
+						<div className="text-sm leading-relaxed">
+							Risk management, position tracking, and execution analytics out of
+							the box.
 						</div>
 					</div>
 
@@ -90,7 +76,9 @@ export function HeroSection() {
 						<div className="text-sm font-mono leading-relaxed">
 							{"> npm install @zelix/sdk"}
 						</div>
-						<div className="text-sm mt-2 opacity-80">PRODUCTION READY</div>
+						<div className="text-sm mt-2 opacity-80">
+							GET STARTED IN MINUTES
+						</div>
 					</div>
 				</div>
 			</div>

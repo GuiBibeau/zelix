@@ -10,8 +10,8 @@ export function CtaSection() {
 					START BUILDING TODAY
 				</h2>
 				<p className="text-lg mb-12 max-w-2xl mx-auto opacity-90">
-					Join institutional traders and quant firms using Zelix to execute
-					strategies on Solana at lightning speed.
+					Join traders using Zelix to build and deploy quantitative strategies
+					on Solana.
 				</p>
 
 				<div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -38,15 +38,15 @@ export function CtaSection() {
 				<div className="mt-16 flex flex-wrap justify-center gap-8 text-sm opacity-80">
 					<div className="flex items-center gap-2">
 						<div className="w-3 h-3 bg-white dark:bg-black" />
-						<span>SOC 2 COMPLIANT</span>
+						<span>TYPESCRIPT SDK</span>
 					</div>
 					<div className="flex items-center gap-2">
 						<div className="w-3 h-3 bg-white dark:bg-black" />
-						<span>99.99% UPTIME SLA</span>
+						<span>SOLANA NATIVE</span>
 					</div>
 					<div className="flex items-center gap-2">
 						<div className="w-3 h-3 bg-white dark:bg-black" />
-						<span>24/7 SUPPORT</span>
+						<span>DEVELOPER SUPPORT</span>
 					</div>
 				</div>
 			</div>
