@@ -11,10 +11,7 @@
 		"./lib/utils": "./src/lib/utils.ts",
 		"./button": "./src/components/ui/button.tsx",
 		"./card": "./src/components/ui/card.tsx",
-		"./dialog": "./src/components/ui/dialog.tsx",
-		"./landing": "./src/components/landing/index.ts",
-		"./terminal": "./src/components/terminal/index.ts",
-		"./modal": "./src/components/modal/index.ts"
+		"./dialog": "./src/components/ui/dialog.tsx"
 	},
 	"scripts": {
 		"lint": "biome check --write",
