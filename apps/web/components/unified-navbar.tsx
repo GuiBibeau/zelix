@@ -1,8 +1,30 @@
 "use client";
 
-import { Zap } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
+function ZelixLogo({ className }: { className?: string }) {
+	return (
+		<svg
+			width="32"
+			height="32"
+			viewBox="0 0 32 32"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			className={className}
+			role="img"
+			aria-labelledby="zelix-logo-title"
+		>
+			<title id="zelix-logo-title">Zelix</title>
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M5 5H27V9H13.5L27 23V27H5V23H18.5L5 9V5Z"
+				fill="currentColor"
+			/>
+		</svg>
+	);
+}
 
 interface UnifiedNavbarProps {
 	onConnectWallet?: () => void;
@@ -22,7 +44,7 @@ export function UnifiedNavbar({
 				<div className="flex items-center gap-6">
 					<Link href="/" className="flex items-center gap-2 group">
 						<div className="w-10 h-10 bg-black dark:bg-white flex items-center justify-center transition-transform group-hover:scale-110">
-							<Zap className="w-6 h-6 text-white dark:text-black" />
+							<ZelixLogo className="w-6 h-6 text-white dark:text-black" />
 						</div>
 						<span className="text-2xl font-bold uppercase tracking-tighter">
 							ZELIX
