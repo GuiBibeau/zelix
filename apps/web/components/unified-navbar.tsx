@@ -27,13 +27,13 @@ function ZelixLogo({ className }: { className?: string }) {
 }
 
 interface UnifiedNavbarProps {
-	onConnectWallet?: () => void;
-	isConnected?: boolean;
+	onWalletClick?: () => void;
+	connected?: boolean;
 }
 
 export function UnifiedNavbar({
-	onConnectWallet,
-	isConnected,
+	onWalletClick,
+	connected,
 }: UnifiedNavbarProps) {
 	const pathname = usePathname();
 	const isTerminal = pathname === "/terminal";
@@ -122,10 +122,10 @@ export function UnifiedNavbar({
 					{isTerminal && (
 						<button
 							type="button"
-							onClick={onConnectWallet}
+							onClick={onWalletClick}
 							className="border-4 border-black dark:border-white bg-black dark:bg-white text-white dark:text-black px-6 py-2 text-sm font-bold uppercase hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)]"
 						>
-							{isConnected ? "0x7a...4f2c" : "CONNECT"}
+							{connected ? "CONNECTED" : "CONNECT"}
 						</button>
 					)}
 				</div>

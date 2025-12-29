@@ -12,17 +12,11 @@ import {
 interface WalletConnectedModalProps {
 	isOpen: boolean;
 	onOpenChange: (open: boolean) => void;
-	onDisconnect: () => void;
-	address?: string;
-	balance?: string;
 }
 
 export function WalletConnectedModal({
 	isOpen,
 	onOpenChange,
-	onDisconnect,
-	address = "0x7a9f2e...8d4f2c",
-	balance = "2.45 ETH",
 }: WalletConnectedModalProps) {
 	return (
 		<Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -35,7 +29,7 @@ export function WalletConnectedModal({
 					<div className="border-2 border-black dark:border-white p-4">
 						<div className="text-xs text-muted-foreground mb-2">ADDRESS</div>
 						<div className="flex items-center justify-between">
-							<span className="font-mono font-bold">{address}</span>
+							<span className="font-mono font-bold">address here</span>
 							<button type="button" className="hover:bg-muted p-1">
 								<Copy className="w-4 h-4" />
 							</button>
@@ -44,10 +38,8 @@ export function WalletConnectedModal({
 
 					<div className="border-2 border-black dark:border-white p-4">
 						<div className="text-xs text-muted-foreground mb-2">BALANCE</div>
-						<div className="text-2xl font-bold font-mono">{balance}</div>
-						<div className="text-xs text-muted-foreground mt-1">
-							≈ $4,287.50 USD
-						</div>
+						<div className="text-2xl font-bold font-mono">TODO</div>
+						<div className="text-xs text-muted-foreground mt-1">≈ todo USD</div>
 					</div>
 
 					<div className="grid grid-cols-2 gap-3">
@@ -60,7 +52,6 @@ export function WalletConnectedModal({
 						</button>
 						<button
 							type="button"
-							onClick={onDisconnect}
 							className="border-2 border-black dark:border-white p-3 hover:bg-destructive hover:text-destructive-foreground hover:border-destructive transition-colors"
 						>
 							<LogOut className="w-5 h-5 mx-auto mb-1" />
