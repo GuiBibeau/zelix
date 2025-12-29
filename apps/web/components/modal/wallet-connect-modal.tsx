@@ -8,6 +8,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from "@repo/ui/dialog";
+import { useWalletConnection } from "@solana/react-hooks";
 
 interface WalletConnectModalProps {
 	isOpen: boolean;
@@ -18,6 +19,8 @@ export function WalletConnectModal({
 	isOpen,
 	onOpenChange,
 }: WalletConnectModalProps) {
+	const { connectors, connect } = useWalletConnection();
+
 	return (
 		<Dialog open={isOpen} onOpenChange={onOpenChange}>
 			<DialogContent>
@@ -26,9 +29,22 @@ export function WalletConnectModal({
 				</DialogHeader>
 
 				<DialogBody className="space-y-3">
-					<p className="text-muted-foreground text-center py-4">
-						Wallet connectors will appear here
-					</p>
+					{connectors.map((connector) => (
+						<button
+							type="button"
+							key={connector.id}
+							onClick={() => {
+								connect(connector.id);
+								onOpenChange(false);
+							}}
+							className="w-full border-2 border-black dark:border-white p-4 flex items-center justify-between hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors group"
+						>
+							<span className="font-bold">{connector.name}</span>
+							<span className="text-xs text-muted-foreground group-hover:text-inherit">
+								<img width={25} src={connector.icon} alt={connector.name} />
+							</span>
+						</button>
+					))}
 				</DialogBody>
 
 				<DialogFooter>
