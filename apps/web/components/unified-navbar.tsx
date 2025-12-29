@@ -1,5 +1,6 @@
 "use client";
 
+import { useWalletConnection } from "@solana/react-hooks";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -28,14 +29,11 @@ function ZelixLogo({ className }: { className?: string }) {
 
 interface UnifiedNavbarProps {
 	onWalletClick?: () => void;
-	connected?: boolean;
 }
 
-export function UnifiedNavbar({
-	onWalletClick,
-	connected,
-}: UnifiedNavbarProps) {
+export function UnifiedNavbar({ onWalletClick }: UnifiedNavbarProps) {
 	const pathname = usePathname();
+	const { connected } = useWalletConnection();
 	const isTerminal = pathname === "/terminal";
 
 	return (
