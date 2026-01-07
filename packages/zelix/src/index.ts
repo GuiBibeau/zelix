@@ -1,5 +1,4 @@
 export const VERSION = "0.0.1";
 
-export function hello(): string {
-	return "Hello from @quanto/solana";
-}
+export { ZelixSdk } from "./zelix-sdk.js";
+export type { ZelixSdkConfig } from "./zelix-sdk.js";
