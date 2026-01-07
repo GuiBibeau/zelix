@@ -1,19 +1,27 @@
 "use client";
 
-import { useWalletConnection } from "@solana/react-hooks";
+import { useWalletConnection, useWalletSession } from "@solana/react-hooks";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { Wallet, ChevronDown } from "lucide-react";
 import { ConnectButtonSkeleton } from "./ui/connect-button-skeleton";
+import { WalletDropdown } from "./wallet-dropdown";
 
 const buttonStyles =
-	"border-4 border-black dark:border-white bg-black dark:bg-white text-white dark:text-black text-sm font-bold uppercase hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white transition-colors hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] w-[140px] h-[42px]";
+	"border-4 border-black dark:border-white bg-black dark:bg-white text-white dark:text-black text-sm font-bold uppercase hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white transition-colors hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] h-[42px]";
+
+function shortenAddress(address: string): string {
+	return `${address.slice(0, 4)}...${address.slice(-4)}`;
+}
 
 function ConnectButton({ onClick }: { onClick?: () => void }) {
 	const { connected, isReady } = useWalletConnection();
+	const session = useWalletSession();
+	const address = session?.account.address.toString() ?? "";
 
-	return (
-		<div className="relative w-[140px] h-[42px]">
+	const button = (
+		<div className="relative h-[42px]">
 			<AnimatePresence mode="wait">
 				{!isReady ? (
 					<ConnectButtonSkeleton key="skeleton" />
@@ -21,8 +29,8 @@ function ConnectButton({ onClick }: { onClick?: () => void }) {
 					<motion.button
 						key="button"
 						type="button"
-						onClick={onClick}
-						className={buttonStyles}
+						onClick={connected ? undefined : onClick}
+						className={`${buttonStyles} ${connected ? "px-3" : "w-[140px]"}`}
 						initial={{ opacity: 0, filter: "blur(4px)" }}
 						animate={{ opacity: 1, filter: "blur(0px)" }}
 						transition={{
@@ -30,12 +38,26 @@ function ConnectButton({ onClick }: { onClick?: () => void }) {
 							ease: [0.25, 0.1, 0.25, 1],
 						}}
 					>
-						{connected ? "CONNECTED" : "CONNECT"}
+						{connected ? (
+							<span className="flex items-center gap-2">
+								<Wallet className="w-4 h-4" />
+								<span className="font-mono normal-case">{shortenAddress(address)}</span>
+								<ChevronDown className="w-4 h-4" />
+							</span>
+						) : (
+							"CONNECT"
+						)}
 					</motion.button>
 				)}
 			</AnimatePresence>
 		</div>
 	);
+
+	if (connected && isReady) {
+		return <WalletDropdown>{button}</WalletDropdown>;
+	}
+
+	return button;
 }
 
 function ZelixLogo({ className }: { className?: string }) {
@@ -67,7 +89,7 @@ interface UnifiedNavbarProps {
 
 export function UnifiedNavbar({ onWalletClick }: UnifiedNavbarProps) {
 	const pathname = usePathname();
-	const isTerminal = pathname === "/terminal";
+	const isTerminal = pathname.startsWith("/terminal");
 
 	return (
 		<nav className="border-b-4 border-black dark:border-white bg-white dark:bg-black sticky top-0 z-50">

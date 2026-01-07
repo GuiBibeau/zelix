@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { UnifiedNavbar } from "@/components";
-import { WalletConnectModal, WalletConnectedModal } from "@/components/modal";
+import { WalletConnectModal } from "@/components/modal";
 import { useWalletConnection } from "@solana/react-hooks";
 
 export default function TerminalLayout({
@@ -21,11 +21,6 @@ export default function TerminalLayout({
 
 			<WalletConnectModal
 				isOpen={showWalletModal && !connected}
-				onOpenChange={setShowWalletModal}
-			/>
-
-			<WalletConnectedModal
-				isOpen={showWalletModal && connected}
 				onOpenChange={setShowWalletModal}
 			/>
 		</div>
