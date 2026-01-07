@@ -3,6 +3,40 @@
 import { useWalletConnection } from "@solana/react-hooks";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { ConnectButtonSkeleton } from "./ui/connect-button-skeleton";
+
+const buttonStyles =
+	"border-4 border-black dark:border-white bg-black dark:bg-white text-white dark:text-black text-sm font-bold uppercase hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white transition-colors hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] w-[140px] h-[42px]";
+
+function ConnectButton({ onClick }: { onClick?: () => void }) {
+	const { connected, isReady } = useWalletConnection();
+
+	return (
+		<div className="relative w-[140px] h-[42px]">
+			<AnimatePresence mode="wait">
+				{!isReady ? (
+					<ConnectButtonSkeleton key="skeleton" />
+				) : (
+					<motion.button
+						key="button"
+						type="button"
+						onClick={onClick}
+						className={buttonStyles}
+						initial={{ opacity: 0, filter: "blur(4px)" }}
+						animate={{ opacity: 1, filter: "blur(0px)" }}
+						transition={{
+							duration: 0.3,
+							ease: [0.25, 0.1, 0.25, 1],
+						}}
+					>
+						{connected ? "CONNECTED" : "CONNECT"}
+					</motion.button>
+				)}
+			</AnimatePresence>
+		</div>
+	);
+}
 
 function ZelixLogo({ className }: { className?: string }) {
 	return (
@@ -33,7 +67,6 @@ interface UnifiedNavbarProps {
 
 export function UnifiedNavbar({ onWalletClick }: UnifiedNavbarProps) {
 	const pathname = usePathname();
-	const { connected } = useWalletConnection();
 	const isTerminal = pathname === "/terminal";
 
 	return (
@@ -117,15 +150,7 @@ export function UnifiedNavbar({ onWalletClick }: UnifiedNavbarProps) {
 						</>
 					)}
 
-					{isTerminal && (
-						<button
-							type="button"
-							onClick={onWalletClick}
-							className="border-4 border-black dark:border-white bg-black dark:bg-white text-white dark:text-black px-6 py-2 text-sm font-bold uppercase hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white transition-all hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)]"
-						>
-							{connected ? "CONNECTED" : "CONNECT"}
-						</button>
-					)}
+					{isTerminal && <ConnectButton onClick={onWalletClick} />}
 				</div>
 			</div>
 		</nav>
