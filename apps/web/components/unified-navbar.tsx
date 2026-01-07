@@ -1,6 +1,6 @@
 "use client";
 
-import { useWalletConnection, useWalletSession } from "@solana/react-hooks";
+import { useWalletConnection } from "@solana/react-hooks";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,9 +16,8 @@ function shortenAddress(address: string): string {
 }
 
 function ConnectButton({ onClick }: { onClick?: () => void }) {
-	const { connected, isReady } = useWalletConnection();
-	const session = useWalletSession();
-	const address = session?.account.address.toString() ?? "";
+	const { connected, isReady, wallet } = useWalletConnection();
+	const address = wallet?.account.address.toString() ?? "";
 
 	const button = (
 		<div className="relative h-[42px]">

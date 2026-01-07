@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Copy, Check, User, Settings, LogOut } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@repo/ui/popover";
-import { useWalletSession, useDisconnectWallet } from "@solana/react-hooks";
+import { useWalletConnection } from "@solana/react-hooks";
 
 function shortenAddress(address: string): string {
 	return `${address.slice(0, 4)}...${address.slice(-4)}`;
@@ -15,12 +15,11 @@ interface WalletDropdownProps {
 }
 
 export function WalletDropdown({ children }: WalletDropdownProps) {
-	const session = useWalletSession();
-	const disconnect = useDisconnectWallet();
+	const { wallet, disconnect } = useWalletConnection();
 	const [copied, setCopied] = useState(false);
 	const [open, setOpen] = useState(false);
 
-	const address = session?.account.address.toString() ?? "";
+	const address = wallet?.account.address.toString() ?? "";
 
 	const handleCopy = async () => {
 		if (!address) return;
